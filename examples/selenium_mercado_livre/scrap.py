@@ -1,10 +1,11 @@
 import logging
 import pandas as pd
+from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from config import SELECTORS, N_PAGES, SEARCH_TEXT, INITIAL_URL
-from utils import make_search, get_selenium_driver, get_card_items
+from utils import make_search, get_card_items
 
 
 def configurar_logger():
@@ -50,10 +51,9 @@ def capturar_itens(driver, logger):
 
 def web_scrap_ml_item():
     logger = configurar_logger()
-    driver = None
     try:
         logger.info("Iniciando a extração de dados da web")
-        driver = get_selenium_driver()
+        driver = webdriver.Chrome()
         driver.get(INITIAL_URL)
 
         make_search(
@@ -61,11 +61,11 @@ def web_scrap_ml_item():
         )
         logger.info("Pesquisa realizada - iniciando a captura de itens")
         df_itens = capturar_itens(driver, logger)
-    finally:
-        if driver:
-            driver.quit()
-        df_itens.to_csv("itens.csv", index=False)
-        logger.info("Dados extraídos salvos em itens.csv")
+        df_itens.to_csv(f"{SEARCH_TEXT}.csv", index=False)
+        logger.info(f"Dados extraídos salvos em {SEARCH_TEXT}.csv")
+        driver.quit()
+    except Exception as e:
+        print(e)
 
 
 def main():

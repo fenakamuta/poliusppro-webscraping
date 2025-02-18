@@ -9,20 +9,20 @@ driver.get("https://www.google.com")
 
 
 # 1) Clique básico com time sleep
-time.sleep(2)
-selector = "body > div.L3eUgb > div.o3j99.ikrT4e.om7nvf > form > div:nth-child(1) > div.A8SBwf > div.FPdoLc.lJ9FBc > center > input.RNmpXc"
-driver.find_element(By.CSS_SELECTOR, selector).click()
-time.sleep(5)
+# time.sleep(2)
+# selector = "body > div.L3eUgb > div.o3j99.ikrT4e.om7nvf > form > div:nth-child(1) > div.A8SBwf > div.FPdoLc.lJ9FBc > center > input.RNmpXc"
+# driver.find_element(By.CSS_SELECTOR, selector).click()
+# time.sleep(5)
 
 
 # 2) Esperando o elemento ficar disponível
-wait = WebDriverWait(driver, 15)
-selector = "body > div.L3eUgb > div.o3j99.ikrT4e.om7nvf > form > div:nth-child(1) > div.A8SBwf > div.FPdoLc.lJ9FBc > center > input.RNmpXc"
-button = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, selector)))
-button.click()
-time.sleep(5)
+# wait = WebDriverWait(driver, 15)
+# selector = "body > div.L3eUgb > div.o3j99.ikrT4e.om7nvf > form > div:nth-child(1) > div.A8SBwf > div.FPdoLc.lJ9FBc > center > input.RNmpXc"
+# button = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, selector)))
+# button.click()
+# time.sleep(5)
 
-# 3) Pegando itens
+# # 3) Pegando itens
 wait = WebDriverWait(driver, 15)
 button_selector = "body > div.L3eUgb > div.o3j99.ikrT4e.om7nvf > form > div:nth-child(1) > div.A8SBwf > div.FPdoLc.lJ9FBc > center > input.RNmpXc"
 button = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, button_selector)))
